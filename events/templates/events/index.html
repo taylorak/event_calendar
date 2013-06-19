@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load markup %}
+
+{% block head %}<title>Events</title>{% endblock %}
+
+{% block body %}
+
+<h1>Announcements</h1>
+
+{% for announcement in announcement_list %}
+	<h4>{{ announcement.title }}</h4>
+	{{ announcement.description|markdown }}
+		<hr />
+{% endfor %}
+
+<h1>Events</h1>
+
+{% for event in event_list %}
+	<h4>{{ event.title }}</h4>
+	{{ event.description|markdown }}
+	<hr />
+{% endfor %}
+
+
+{% endblock %}

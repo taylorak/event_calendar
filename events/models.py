@@ -1,24 +1,20 @@
 from django import forms
 from django.db import models
 from django.forms import ModelForm
+from django.contrib.auth.models import User
 from widgets import SelectDateWidget,SplitSelDateTimeWidget
 
 # Create your models here.
-class people(models.Model):
-    pass
-
-class department(models.Model):
-    pass
 
 class announcement(models.Model):
-    id = models.AutoField('annoucement_id', primary_key=True)
-    person_id = models.ForeignKey(people,verbose_name="Contact", related_name = "contact")
+    author = models.ForeignKey(User)
     title = models.CharField(max_length=300)
     description = models.TextField()
     expire_date = models.DateTimeField()
     entry_date = models.DateTimeField(auto_now_add=True)
-    url = models.URLField(blank=True, null=True)
-    poster = models.ForeignKey(people)    
+    
+    def __unicode__(self):
+        return str(self.entry_date)
 
 
 class announcement_Form(ModelForm):
@@ -32,17 +28,13 @@ class announcement_Form(ModelForm):
 ####
 
 class event(models.Model):
-    id = models.AutoField('event_id', primary_key=True)
-    person_id = models.ForeignKey(people)
-    dept_id = models.ForeignKey(department)
+    author = models.ForeignKey(User)
     title = models.CharField(max_length=255)
-    short_title = models.CharField(max_length=64)
+    description = models.TextField()
+    location = models.CharField(max_length=64)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
-    location = models.CharField(max_length=64)
-    description = models.TextField()
-    presenter = models.CharField(max_length=64, blank = True, null = True)
-    url =  models.URLField(blank=True, null=True)
+
     
     def __unicode__(self):
         return str(self.start_date)
