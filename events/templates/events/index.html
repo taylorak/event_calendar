@@ -1,15 +1,17 @@
 {% extends "base.html" %}
-{% load markup %}
+{% load custom_filters %}
+{% load inclusion_tags %}
 
 {% block head %}<title>Events</title>{% endblock %}
 
 {% block body %}
+{% calendar_html %}
 
 <h1>Announcements</h1>
 
 {% for announcement in announcement_list %}
 	<h4>{{ announcement.title }}</h4>
-	{{ announcement.description|markdown }}
+	{{ announcement.description|my_markdown }}
 		<hr />
 {% endfor %}
 
@@ -17,7 +19,7 @@
 
 {% for event in event_list %}
 	<h4>{{ event.title }}</h4>
-	{{ event.description|markdown }}
+	{{ event.description|my_markdown }}
 	<hr />
 {% endfor %}
 

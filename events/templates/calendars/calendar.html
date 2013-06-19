@@ -1,0 +1,19 @@
+<table>
+	<tr>
+		<th><a href="{% url "events.views.index" %}">&lt;&lt</a></th>
+		<th colspan="5">{{ month }} {{ year }}</th>
+		<th><a href="{% url "events.views.index" %}">&gt;&gt</a></th>
+	</tr>
+	<tr>
+	{% for dayname in daynames %}
+		<th>{{ dayname }}</th>
+	{% endfor %}
+	</tr>
+	{% for week in weeks %}
+	<tr>
+		{% for day in week %}
+			<td>{{ day }}</td>
+		{% endfor %}
+	</tr>
+	{% endfor %}
+</table>
