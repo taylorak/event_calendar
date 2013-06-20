@@ -1,8 +1,9 @@
+{% load url from future %}
 <table>
 	<tr>
-		<th><a href="{% url "events.views.index" %}">&lt;&lt</a></th>
-		<th colspan="5">{{ month }} {{ year }}</th>
-		<th><a href="{% url "events.views.index" %}">&gt;&gt</a></th>
+		<th><a href="{% url "events.views.month" prev_year prev_month %}">&lt;&lt</a></th>
+		<th colspan="5">{{ month_name }} {{ year }}</th>
+		<th><a href="{% url "events.views.month" next_year next_month %}">&gt;&gt</a></th>
 	</tr>
 	<tr>
 	{% for dayname in daynames %}
@@ -12,7 +13,11 @@
 	{% for week in weeks %}
 	<tr>
 		{% for day in week %}
-			<td>{{ day }}</td>
+			{% if day %}
+			<td><a href="{% url "events.views.day" year month day %}">{{ day }}</a></td>
+			{% elif day == ''%}
+			<td></td>
+			{% endif %}
 		{% endfor %}
 	</tr>
 	{% endfor %}
