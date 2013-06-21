@@ -16,4 +16,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('events.urls')),    
     url(r'^calendar/', include('events.urls')),
+    url(r'^login/$','django.contrib.auth.views.login'),
+    url(r'^logout/$','logout_page'),
 )

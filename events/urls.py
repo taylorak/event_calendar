@@ -10,7 +10,10 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns('',
     url(r'^$', 'events.views.index'),
+    url(r'^events/(?P<e_id>\d+)/$','events.views.event_details'),
+    url(r'^announcements/(?P<a_id>\d+)/$','events.views.announcement_details'),
     url(r'^(?P<year>\d{4})/(?P<month>\d+)/$','events.views.month'),
     url(r'^(?P<year>\d{4})/(?P<month>\d+)/(?P<day>\d+)/$','events.views.day'),
 #    url(r'^(?P<year>d{4})/$','events.views.year'), 
 )
+

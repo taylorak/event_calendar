@@ -1,15 +1,32 @@
 from django import template
-from itertools import groupby
-from events.models import event
+from events.models import event,announcement
 
 register = template.Library()
 
 @register.inclusion_tag('calendars/calendar.html')
 def calendar_html(year,month):
     import calendar
+    import datetime
+    date = datetime.date.today()
     year,month = int(year),int(month)
     chosen_month = calendar.monthcalendar(year, month)
-    weeks = [[day or '' for day in week] for week in chosen_month]
+#    weeks = [[day or '' for day in week] for week in chosen_month]
+    
+    weeks = [[]]
+    i = 0
+    
+    for week in chosen_month:
+        for day in week:
+            events = announcements = current = False
+            if day:
+                events = event.objects.filter(start_date__year=year, start_date__month=month, start_date__day=day)
+                announcements = announcement.objects.filter(entry_date__year=year, entry_date__month=month, entry_date__day=day)
+                if year == date.year and month == date.month and day == date.day:
+                    current = True
+            weeks[i].append((day,events,announcements, current))
+        weeks.append([])
+        i += 1
+              
     
     next_month = month+1
     next_year = year

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load custom_filters %}
+{% load inclusion_tags %}
+
+{% block head %}<title>Event Details</title>{% endblock %}
+
+{% block body %}
+{% calendar_html year month %}
+
+<h4>{{ event.title }}</h4>
+{{ event.description|my_markdown }}
+{{ event.author }}
+
+{% endblock %}

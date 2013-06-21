@@ -12,12 +12,16 @@
 	</tr>
 	{% for week in weeks %}
 	<tr>
-		{% for day in week %}
-			{% if day %}
-			<td><a href="{% url "events.views.day" year month day %}">{{ day }}</a></td>
-			{% elif day == ''%}
-			<td></td>
+		{% for day,events,announcements,current in week %}
+			<td>
+			{% if events %}
+			<a href="{% url "events.views.day" year month day %}">{{ day }}</a>
+			{% elif announcements %}
+			<a href="{% url "events.views.day" year month day %}">{{ day }}</a>
+			{% elif day %}
+			{{ day }}
 			{% endif %}
+			</td>
 		{% endfor %}
 	</tr>
 	{% endfor %}
