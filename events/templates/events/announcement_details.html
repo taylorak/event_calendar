@@ -5,8 +5,6 @@
 {% block head %}<title>Announcement Details</title>{% endblock %}
 
 {% block body %}
-{% calendar_html year month %}
-
 <h4>{{ announcement.title }}</h4>
 {{ announcement.description|my_markdown }}
 {{ announcement.author }}

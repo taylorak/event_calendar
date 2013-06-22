@@ -16,8 +16,6 @@
 			<td>
 			{% if events %}
 			<a href="{% url "events.views.day" year month day %}">{{ day }}</a>
-			{% elif announcements %}
-			<a href="{% url "events.views.day" year month day %}">{{ day }}</a>
 			{% elif day %}
 			{{ day }}
 			{% endif %}

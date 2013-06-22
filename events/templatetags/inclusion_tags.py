@@ -41,6 +41,7 @@ def calendar_html(year,month):
         prev_year = year-1
     
     return {      
+#        'current': date,
         'month_name': calendar.month_name[month],
         'month': month,
         'year': year,
