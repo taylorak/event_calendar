@@ -17,5 +17,5 @@ urlpatterns = patterns('',
     url(r'^', include('events.urls')),    
     url(r'^calendar/', include('events.urls')),
     url(r'^login/$','django.contrib.auth.views.login'),
-    url(r'^logout/$','logout_page'),
+    url(r'^logout/$','django.contrib.auth.views.logout',{'next_page':'/'}),
 )

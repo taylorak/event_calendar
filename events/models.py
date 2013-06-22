@@ -1,8 +1,8 @@
-from django import forms
+#from django import forms
 from django.db import models
 from django.forms import ModelForm
 from django.contrib.auth.models import User
-from widgets import SelectDateWidget,SplitSelDateTimeWidget
+#from widgets import SelectDateWidget,SplitSelDateTimeWidget
 
 # Create your models here.
 
@@ -18,12 +18,11 @@ class announcement(models.Model):
 
 
 class announcement_Form(ModelForm):
-    expire_date = forms.DateField(widget = SelectDateWidget, required=True)
+    #expire_date = forms.DateField(widget = SelectDateWidget, required=True)
 
     class Meta:
         model = announcement
-        exclude = ('poster','entry_date', 'person_id')
-
+        exclude = ('author','entry_date')
 
 ####
 
@@ -40,11 +39,11 @@ class event(models.Model):
         return str(self.start_date)
 
 class event_Form(ModelForm):
-    start_date = forms.DateTimeField(label = "Start Date/Time", widget = SplitSelDateTimeWidget, required=True, help_text ="24-hour clock (00:00 - 23:59)")
-    end_date = forms.DateTimeField(label = "End Date/Time", widget = SplitSelDateTimeWidget, required=True, help_text ="24-hour clock (00:00 - 23:59)")
+    #start_date = forms.DateTimeField(label = "Start Date/Time", widget = SplitSelDateTimeWidget, required=True, help_text ="24-hour clock (00:00 - 23:59)")
+    #end_date = forms.DateTimeField(label = "End Date/Time", widget = SplitSelDateTimeWidget, required=True, help_text ="24-hour clock (00:00 - 23:59)")
 
     class Meta:
         model = event
-        exclude = ('person_id')
+        exclude = ('author')
 
 ####

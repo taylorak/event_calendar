@@ -85,8 +85,8 @@ class SplitSelDateTimeWidget(MultiWidget):
     """
     A Widget that splits datetime input into two <input type="text"> boxes.
     """
-#  date_format = DateInput.format
-#  time_format = TimeInput.format
+    date_format = DateInput.format
+    time_format = TimeInput.format
 
     def __init__(self, attrs=None, date_format=None, time_format=None):
         widgets = (SelectDateWidget(attrs=attrs), TimeInput(attrs=attrs, format=time_format))

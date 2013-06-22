@@ -14,6 +14,8 @@ urlpatterns = patterns('',
     url(r'^announcements/(?P<a_id>\d+)/$','events.views.announcement_details'),
     url(r'^(?P<year>\d{4})/(?P<month>\d+)/$','events.views.month'),
     url(r'^(?P<year>\d{4})/(?P<month>\d+)/(?P<day>\d+)/$','events.views.day'),
+    url(r'^add_event/$','events.views.add_event'),
+    url(r'^add_announcement/$','events.views.add_announcement'),
 #    url(r'^(?P<year>d{4})/$','events.views.year'), 
 )
 

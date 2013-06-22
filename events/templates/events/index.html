@@ -9,7 +9,7 @@
 {% calendar_html year month %}
 
 {% if user.is_authenticated %}
-	<a href="#">Logout</a>
+	<a href="{% url "django.contrib.auth.views.logout" %}">Logout</a>
 {% else %}
 	<a href="{% url "django.contrib.auth.views.login" %}">Login</a>
 {% endif %}
