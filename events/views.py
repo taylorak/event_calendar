@@ -12,7 +12,7 @@ def index(request):
     event_list = event.objects.all().filter(start_date__gt=date).order_by('-start_date')[:5]
     announcement_list = announcement.objects.all().filter(expire_date__gt=date).order_by('entry_date')
     c = {'event_list':event_list,'announcement_list':announcement_list,'year':date.year,'month':date.month,'day':date.day}
-    return render_to_response('events/index.html', RequestContext(request, c))
+    return render_to_response('index.html', RequestContext(request, c))
 
 def event_details(request,e_id):
     event_details = get_object_or_404(event,id=e_id)
@@ -48,7 +48,7 @@ def add_event(request):
             instance = form.save(commit=False)
             instance.author = request.user
             instance.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/profile')
     else:
         form = event_Form()
         c = {'message': 'Add Event', 'form': form}
@@ -62,7 +62,7 @@ def add_announcement(request):
             instance = form.save(commit=False)
             instance.author = request.user
             instance.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/profile')
     else:
         form = announcement_Form()
         c = {'message': 'Add Announcement', 'form': form}

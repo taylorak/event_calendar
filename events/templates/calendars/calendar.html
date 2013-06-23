@@ -12,7 +12,7 @@
 	</tr>
 	{% for week in weeks %}
 	<tr>
-		{% for day,events,announcements,current in week %}
+		{% for day,events,current in week %}
 			<td>
 			{% if events %}
 			<a href="{% url "events.views.day" year month day %}">{{ day }}</a>

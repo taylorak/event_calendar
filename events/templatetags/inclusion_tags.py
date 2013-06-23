@@ -1,5 +1,5 @@
 from django import template
-from events.models import event,announcement
+from events.models import event
 
 register = template.Library()
 
@@ -17,13 +17,13 @@ def calendar_html(year,month):
     
     for week in chosen_month:
         for day in week:
-            events = announcements = current = False
+            events = current = False
             if day:
                 events = event.objects.filter(start_date__year=year, start_date__month=month, start_date__day=day)
-                announcements = announcement.objects.filter(entry_date__year=year, entry_date__month=month, entry_date__day=day)
+#                announcements = announcement.objects.filter(entry_date__year=year, entry_date__month=month, entry_date__day=day)
                 if year == date.year and month == date.month and day == date.day:
                     current = True
-            weeks[i].append((day,events,announcements, current))
+            weeks[i].append((day,events,current))
         weeks.append([])
         i += 1
               
