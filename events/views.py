@@ -10,7 +10,7 @@ def index(request):
     import datetime
     date = datetime.date.today()
     event_list = event.objects.all().filter(start_date__gt=date).order_by('-start_date')[:5]
-    announcement_list = announcement.objects.all().filter(expire_date__gt=date).order_by('entry_date')
+    announcement_list = announcement.objects.all().filter(expire_date__gt=date).order_by('-entry_date')
     c = {'event_list':event_list,'announcement_list':announcement_list,'year':date.year,'month':date.month,'day':date.day}
     return render_to_response('index.html', RequestContext(request, c))
 
@@ -67,5 +67,10 @@ def add_announcement(request):
         form = announcement_Form()
         c = {'message': 'Add Announcement', 'form': form}
         return render_to_response('forms/add.html',RequestContext(request, c))
-
-
+    
+@login_required
+def profile(request):
+    event_list = event.objects.filter(author=request.user).order_by('-start_date')
+    announcement_list = announcement.objects.all().filter(author=request.user).order_by('-entry_date')
+    c = {'event_list':event_list,'announcement_list':announcement_list}
+    return render_to_response('profile.html',RequestContext(request, c))

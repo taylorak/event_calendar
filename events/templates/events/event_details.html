@@ -5,6 +5,15 @@
 {% block head %}<title>Event Details</title>{% endblock %}
 
 {% block body %}
+
+<a href="{% url "events.views.index" %}">Home</a>
+
+{% if user.is_authenticated %}
+	<a href="{% url "django.contrib.auth.views.logout" %}">Logout</a>
+{% else %}
+	<a href="{% url "django.contrib.auth.views.login" %}">Login</a>
+{% endif %}
+
 {% calendar_html year month %}
 
 <h4>{{ event.title }}</h4>
