@@ -27,16 +27,12 @@ def announcement_details(request,a_id):
 def month(request,year,month):
     year,month = int(year),int(month)
     event_list = event.objects.filter(start_date__year=year,start_date__month=month).order_by('-start_date')
-#    announcement_list = announcement.objects.filter(entry_date__year=year,entry_date__month=month).order_by('-entry_date')
-#    c = {'event_list':event_list,'announcement_list':announcement_list,'year':year,'month':month}
     c = {'event_list':event_list,'year':year,'month':month}
     return render_to_response('events/event_calendar.html',RequestContext(request, c))
 
 def day(request,year,month,day):
     year,month,day = int(year),int(month),int(day)
     event_list = event.objects.filter(start_date__year=year,start_date__month=month,start_date__day=day).order_by('-start_date')
-#    announcement_list = announcement.objects.filter(entry_date__year=year,entry_date__month=month,entry_date__day=day).order_by('-entry_date')
-#    c = {'event_list':event_list,'announcement_list':announcement_list,'year':year,'month':month}
     c = {'event_list':event_list,'year':year,'month':month}
     return render_to_response('events/event_calendar.html',RequestContext(request, c))
 
@@ -48,11 +44,11 @@ def add_event(request):
             instance = form.save(commit=False)
             instance.author = request.user
             instance.save()
-            return HttpResponseRedirect('/profile')
+            return HttpResponseRedirect('/calendar/profile')
     else:
         form = event_Form()
-        c = {'message': 'Add Event', 'form': form}
-        return render_to_response('forms/add.html',RequestContext(request, c))
+    c = {'message': 'Add Event','form': form}
+    return render_to_response('forms/add.html',RequestContext(request, c))
 
 @login_required
 def add_announcement(request):
@@ -62,11 +58,11 @@ def add_announcement(request):
             instance = form.save(commit=False)
             instance.author = request.user
             instance.save()
-            return HttpResponseRedirect('/profile')
-    else:
+            return HttpResponseRedirect('/calendar/profile')
+    else:   
         form = announcement_Form()
-        c = {'message': 'Add Announcement', 'form': form}
-        return render_to_response('forms/add.html',RequestContext(request, c))
+    c = {'message': 'Add Announcement', 'form': form}
+    return render_to_response('forms/add.html',RequestContext(request, c))
     
 @login_required
 def profile(request):

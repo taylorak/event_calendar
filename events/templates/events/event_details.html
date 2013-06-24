@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load custom_filters %}
-{% load inclusion_tags %}
 
 {% block head %}<title>Event Details</title>{% endblock %}
 
@@ -13,8 +12,6 @@
 {% else %}
 	<a href="{% url "django.contrib.auth.views.login" %}">Login</a>
 {% endif %}
-
-{% calendar_html year month %}
 
 <h4>{{ event.title }}</h4>
 {{ event.description|my_markdown }}

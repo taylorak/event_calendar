@@ -9,10 +9,17 @@
 </head>
 
 <body>
+	<div class="inner-page">
+	{% block header %}
+	<div class="header">
+		<h1>My Website</h1>	
+	</div>	
+	{% endblock %}
+
 	{% block body %}{% endblock %}
 	
 	{% block footer %}{% endblock %}
-	
+	</div>
 </body>
 
 </html>

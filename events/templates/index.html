@@ -14,25 +14,28 @@
 
 <h3>Announcements</h3>
 {% if not announcement_list %}
-<p>No new Announcements</p>
+	<p>No new Announcements</p>
 {% endif %}
 
+<ul>
 {% for announcement in announcement_list %}
-	<i>Posted on {{ announcement.entry_date|date:"F jS" }}:</i>
+	<li><i>Posted on {{ announcement.entry_date|date:"F jS" }}:</i>
 	<br />
-	<a href="{% url "events.views.announcement_details" announcement.id %}">{{ announcement.title }}</a>
+	<a href="{% url "events.views.announcement_details" announcement.id %}">{{ announcement.title }}</a></li>
 {% endfor %}
+</ul>
 
 <h3>Upcoming Events</h3>
 {% if not event_list%}
 <p>No Upcoming Events</p>
 {% endif %}
 
+<ul>
 {% for event in event_list %}
-	<a href="{% url "events.views.event_details" event.id %}">{{ event.title }}- {{ event.start_date|date:"F jS" }}</a>
+	<li><a href="{% url "events.views.event_details" event.id %}">{{ event.title }}- {{ event.start_date|date:"F jS" }}</a></li>
 {% endfor %}
-
-<a href="{% url "events.views.day" year month day %}">More Events...</a>
+<li><a href="{% url "events.views.day" year month day %}">More Events...</a></li>
+</ul>
 
 
 {% endblock %}

@@ -21,16 +21,17 @@
 {% else %}
 <p>No events have been scheduled for this date.</p>
 {% endif %}
-
+<ul>
 {% for event in event_list %}
 	{% ifchanged event.start_date.day %}
 		<h4>{{event.start_date|date:"D, F jS"}}</h4>
 	{% endifchanged %}
 	
-	{{event.start_date|date:"h:i A" }} &nbsp
-	<a href="{% url "events.views.event_details" event.id %}">{{ event.title }}</a>
+	<li>{{event.start_date|date:"h:i A" }} &nbsp
+	<a href="{% url "events.views.event_details" event.id %}">{{ event.title }}</a></li>
 	<p>{{ event.location }}</p>
 {% endfor %}
+</ul>
 
 
 {% endblock %}
