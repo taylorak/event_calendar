@@ -33,7 +33,7 @@ def month(request,year,month):
 def day(request,year,month,day):
     year,month,day = int(year),int(month),int(day)
     event_list = event.objects.filter(start_date__year=year,start_date__month=month,start_date__day=day).order_by('-start_date')
-    c = {'event_list':event_list,'year':year,'month':month}
+    c = {'event_list':event_list,'year':year,'month':month,'day':day}
     return render_to_response('events/event_calendar.html',RequestContext(request, c))
 
 @login_required

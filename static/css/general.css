@@ -1,0 +1,31 @@
+body {
+	font-family: arial, helvetica, sans-serif;
+	background-color: #E8E8E8;
+	margin: 0;
+	padding: 0;
+}
+
+#inner-page{
+	width: 70%;
+	margin: 10px auto;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.navbar{
+	width:100%;	
+}
+
+.right-column{
+	float: right;	
+	width: 50%;
+}
+
+.left-column{
+	float: left;
+	width: 50%;	
+}

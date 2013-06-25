@@ -1,26 +1,38 @@
-{% load url from future %}
-<table>
-	<tr>
-		<th><a href="{% url "events.views.month" prev_year prev_month %}">&lt;&lt</a></th>
-		<th colspan="5">{{ month_name }} {{ year }}</th>
-		<th><a href="{% url "events.views.month" next_year next_month %}">&gt;&gt</a></th>
-	</tr>
-	<tr>
-	{% for dayname in daynames %}
-		<th>{{ dayname }}</th>
-	{% endfor %}
-	</tr>
-	{% for week in weeks %}
-	<tr>
-		{% for day,events,current in week %}
-			<td>
-			{% if events %}
-			<a href="{% url "events.views.day" year month day %}">{{ day }}</a>
-			{% elif day %}
-			{{ day }}
-			{% endif %}
-			</td>
-		{% endfor %}
-	</tr>
-	{% endfor %}
+<style type="text/css">
+    #calendar td,th { padding: 4px; width: 30px; background: #bbb; }
+    #calendar td { text-align:  right; }
+    #calendar .events { background: #00FF00; }
+    #calendar #current { background: #FF0000; }
+</style>
+
+<table id="calendar">
+    <tr>
+        <th><a href="{% url "events.views.month" prev_year prev_month %}">&lt;&lt</a></th>
+        <th colspan="5">{{ month_name }} {{ year }}</th>
+        <th><a href="{% url "events.views.month" next_year next_month %}">&gt;&gt</a></th>
+    </tr>
+    <tr>
+        {% for dayname in daynames %}
+        <th>{{ dayname }}</th>
+        {% endfor %}
+    </tr>
+    {% for week in weeks %}
+    <tr>
+        {% for day,events,current in week %}
+        <td 
+            {% if current %}
+            id="current" 
+            {% elif events %}
+            class="events" 
+            {% endif %}
+            >
+            {% if events %}
+            <a href="{% url "events.views.day" year month day %}">{{ day }}</a>
+            {% elif day %}
+            {{ day }}
+            {% endif %}
+        </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
 </table>

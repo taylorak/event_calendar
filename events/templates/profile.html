@@ -5,13 +5,14 @@
 
 {% block body %}
 
-<a href="{% url "events.views.index" %}">Home</a>
-
-{% if user.is_authenticated %}
-	<a href="{% url "django.contrib.auth.views.logout" %}">Logout</a>
-{% else %}
-	<a href="{% url "django.contrib.auth.views.login" %}">Login</a>
-{% endif %}
+<div id="navbar">
+    <a href="{% url "events.views.index" %}">Home</a>
+    {% if user.is_authenticated %}
+    <a href="{% url "django.contrib.auth.views.logout" %}">Logout</a>
+    {% else %}
+    <a href="{% url "django.contrib.auth.views.login" %}">Login</a>
+    {% endif %}
+</div>
 
 <a href="{% url "events.views.add_event" %}">[Add Event]</a>
 <a href="{% url "events.views.add_announcement" %}">[Add Announcement]</a>
@@ -22,11 +23,11 @@
 {% endif %}
 
 <ul>
-{% for announcement in announcement_list %}
-	<li><i>Posted on {{ announcement.entry_date|date:"F jS" }}:</i>
-	</br>
-	<a href="{% url "events.views.announcement_details" announcement.id %}">{{ announcement.title }}</a></li>
-{% endfor %}
+    {% for announcement in announcement_list %}
+    <li><i>Posted on {{ announcement.entry_date|date:"F jS" }}:</i>
+    </br>
+    <a href="{% url "events.views.announcement_details" announcement.id %}">{{ announcement.title }}</a></li>
+    {% endfor %}
 </ul>
 
 <h3>Events</h3>
@@ -35,9 +36,9 @@
 {% endif %}
 
 <ul>
-{% for event in event_list %}
-	<li><a href="{% url "events.views.event_details" event.id %}">{{ event.title }}- {{ event.start_date|date:"F jS" }}</a></li>
-{% endfor %}
+    {% for event in event_list %}
+    <li><a href="{% url "events.views.event_details" event.id %}">{{ event.title }}- {{ event.start_date|date:"F jS" }}</a></li>
+    {% endfor %}
 </ul>
 
 {% endblock %}

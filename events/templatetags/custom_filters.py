@@ -16,3 +16,8 @@ def my_markdown(value):
                                        extensions,
                                        safe_mode=True,
                                        enable_attributes=False))
+
+@register.filter
+def month_name(month):
+    import calendar
+    return calendar.month_name[month]
