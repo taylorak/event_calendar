@@ -3,27 +3,29 @@
 {% block title %} Add Form {% endblock %}
 
 {% block body %}
-    
-<h3>{{ Message }}</h3>
 
-<form method="post" action=".">
+<div id="add_form">
 
-<table>
+    <h3>{{ Message }}</h3>
 
-{% for field in form %}
-    <tr><th>{{ field.label_tag }}:</th><td>{{ field }}</td></td>
-    {% if field.errors %}
-    	<td>{{ field.errors }}</td>
-    {% endif %}
-    </tr>
-{% endfor %}
+    <form method="post" action=".">
 
-</table>
+        <table>
+            {% for field in form %}
+            <tr>
+                <th>{{ field.label_tag }}:</th><td>{{ field }}</td></td>
+            {% if field.errors %}
+                <td>{{ field.errors }}</td>
+            {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
 
-{% csrf_token %}
+        {% csrf_token %}
 
-<input type="submit" name="submit" value="Add" />
+        <input type="submit" name="submit" value="Add" />
 
-</form>
+    </form>
 
+</div>
 {% endblock %}

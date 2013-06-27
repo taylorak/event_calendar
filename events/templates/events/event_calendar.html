@@ -16,37 +16,38 @@
     {% endif %}
 </div>
 
-<div class="left-column">
-    {% if event_list%}
-    <h1>Events</h1>
-    {% else %}
-    <p>No events have been scheduled for 
-    {% if day %}
-    today
-    {% else %}
-    {{ month|month_name }}.</p>
-    {% endif %}
+<div id="content">
+    <div class="left-column">
+        {% if event_list%}
+        <h1>Events</h1>
+        {% else %}
+        <p>No events have been scheduled for 
+        {% if day %}
+        today
+        {% else %}
+        {{ month|month_name }}.</p>
+        {% endif %}
 
-    {% endif %}
-    <table>
-        {% for event in event_list %}
-        {% ifchanged event.start_date.day %}
-		<tr>
-			<td class="date" colspan="2">{{event.start_date|date:"D, F jS"}}</td>
-		</tr>
-        {% endifchanged %}
-        <tr>
-			<td>{{event.start_date|date:"h:i A" }}</td>
-            <td><a href="{% url "events.views.event_details" event.id %}">{{ event.title }}</a>
-			<br />
-			{{ event.location }}</td>
-		</tr>
+        {% endif %}
+        <table>
+            {% for event in event_list %}
+            {% ifchanged event.start_date.day %}
+            <tr>
+                <td class="date" colspan="2">{{event.start_date|date:"D, F jS"}}</td>
+            </tr>
+            {% endifchanged %}
+            <tr>
+                <td>{{event.start_date|date:"h:i A" }}</td>
+                <td><a href="{% url "events.views.event_details" event.id %}">{{ event.title }}</a>
+                    <br />
+                    {{ event.location }}</td>
+            </tr>
             {% endfor %}
-    </table>
-</div>
+        </table>
+    </div>
 
-<div class="right-column">
-    {% calendar_html year month %}
+    <div class="right-column">
+        {% calendar_html year month %}
+    </div>
 </div>
-
 {% endblock %}
