@@ -1,0 +1,33 @@
+@import "base.less";
+
+#navbar {
+    width: 100%;
+  	list-style-type: none;
+    a {
+        text-decoration: none;
+        display: block;
+        border-bottom: thin solid @black;
+        width: 75%;
+    }
+}
+
+
+#content {
+    width: 100%;
+    overflow: hidden;
+    ul {
+  	    list-style-type: none;
+        padding: 0;
+    }
+    .left-column {
+        width: 70%;
+        float: left;
+    }
+    .right-column {
+        width: 30%;
+        float: right;
+        .padding {
+            margin: 10px;
+        }
+    }
+}

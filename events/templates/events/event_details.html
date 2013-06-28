@@ -13,10 +13,12 @@
 <a href="{% url "django.contrib.auth.views.login" %}">Login</a>
 {% endif %}
 
-<div class="info">
+<div id="info">
+	<div class="padding">
     <h4>{{ event.title }}</h4>
     {{ event.description|my_markdown }}
     {{ event.author }}
+   </div>
 </div>
 
 {% endblock %}

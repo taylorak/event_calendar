@@ -4,15 +4,17 @@
 
     <head>
         <meta charset="utf-8" />	
-        <link href="{{STATIC_URL}}css/general.css" rel="stylesheet" type="text/css" title="style.css">
+        <link href="{{STATIC_URL}}css/style.css" rel="stylesheet" type="text/css" title="style.css">
         {% block head %}{% endblock %}
     </head>
 
     <body>
         <div id="inner-page">
             {% block header %}
-            <div class="header">
-                <h1>My Website</h1>	
+            <div id="header">
+                <div class="padding">
+                    <h1 class="highlight">Events and Announcements</h1>
+                </div>	
             </div>	
             {% endblock %}
 

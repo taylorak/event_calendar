@@ -1,0 +1,55 @@
+@import "base.less";
+
+#navbar {
+    width: 100%;
+  	list-style-type: none;
+    a {
+        text-decoration: none;
+        display: block;
+        border-bottom: thin solid @black;
+        width: 100%;
+    }
+}
+
+
+#content {
+    width: 100%;
+    overflow: hidden;
+    ul {
+  	    list-style-type: none;
+        padding: 0;
+    }
+    .left-column {
+        width: 20%;
+        float: left;
+    }
+    .middle-column {
+        width: 50%;
+        float: left;
+        h3 {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            .date {
+                font-weight: bold;
+                padding-top: 10px;
+                background-color: lighten(@themeColor,20%);
+            }
+            .time {
+                width: 20%;
+                text-align: left;
+                vertical-align: top; 
+            }
+
+        }
+    }
+    .right-column {
+        width: 30%;
+        float: right;
+        .padding {
+            margin: 10px;
+        }
+    }
+}

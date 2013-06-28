@@ -2,42 +2,51 @@
 {% load custom_filters %}
 {% load inclusion_tags %}
 
-{% block head %}<title>Events</title>{% endblock %}
+{% block head %}
+<title>Events</title>
+<link href="{{STATIC_URL}}css/events.css" rel="stylesheet" type="text/css" title="style.css">
+{% endblock %}
 
 {% block body %}
 
-<div class="navbar">
-    <a href="{% url "events.views.index" %}">Home</a>
-
-    {% if user.is_authenticated %}
-    <a href="{% url "django.contrib.auth.views.logout" %}">Logout</a>
-    {% else %}
-    <a href="{% url "django.contrib.auth.views.login" %}">Login</a>
-    {% endif %}
-</div>
 
 <div id="content">
     <div class="left-column">
-        {% if event_list%}
-        <h1>Events</h1>
-        {% else %}
+
+        <div id="navbar">
+            <div class="padding">
+                <a href="{% url "events.views.index" %}">Home</a>
+
+                {% if user.is_authenticated %}
+                <a href="{% url "django.contrib.auth.views.logout" %}">Logout</a>
+                {% else %}
+                <a href="{% url "django.contrib.auth.views.login" %}">Login</a>
+                {% endif %}
+            </div>
+        </div>			
+    </div>
+
+    <div class="middle-column">
+
+        <h3 class="highlight">Event Calendar</h3>
+        {% if not event_list %}
         <p>No events have been scheduled for 
         {% if day %}
         today
         {% else %}
-        {{ month|month_name }}.</p>
+        {{ month|month_name }}.
         {% endif %}
-
+        </p>
         {% endif %}
         <table>
             {% for event in event_list %}
             {% ifchanged event.start_date.day %}
-            <tr>
-                <td class="date" colspan="2">{{event.start_date|date:"D, F jS"}}</td>
+            <tr class="date">
+                <td colspan="2">{{event.start_date|date:"D, F jS"}}</td>
             </tr>
             {% endifchanged %}
-            <tr>
-                <td>{{event.start_date|date:"h:i A" }}</td>
+            <tr class="details">
+                <td class="time">{{event.start_date|date:"h:i A" }}</td>
                 <td><a href="{% url "events.views.event_details" event.id %}">{{ event.title }}</a>
                     <br />
                     {{ event.location }}</td>
@@ -47,7 +56,22 @@
     </div>
 
     <div class="right-column">
-        {% calendar_html year month %}
+        <div class="padding">
+            {% calendar_html year month %}
+
+            <h3 class="highlight">Announcements</h3>
+            <ul>        
+                {% if not announcement_list%}
+                <li>No Announcements</li>
+                {% endif %}
+
+                {% for announcement in announcement_list %}
+                <li><i>Posted on {{ announcement.entry_date|date:"F jS" }}:</i>
+                <br />
+                <a href="{% url "events.views.announcement_details" announcement.id %}">{{ announcement.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </div>
 {% endblock %}

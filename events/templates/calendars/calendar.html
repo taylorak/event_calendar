@@ -1,7 +1,8 @@
 <style type="text/css">
-    #calendar td,th { padding: 4px; width: 30px; background: #66BBDD; }
-    #calendar td { text-align:  right; }
-    #calendar .events { background: #3399BB; }
+    #calendar { font-size: 13px; }
+    #calendar td,th { padding: 4px; width: 25px; height: 20px; background: #66BBDD; }
+    #calendar td { text-align:  center; }
+    #calendar .date { background: #3399BB; }
     #calendar #current { color: #FFFFFF }
 </style>
 
@@ -23,7 +24,7 @@
             {% if current %}
             id="current" 
             {% elif events %}
-            class="events" 
+            class="date" 
             {% endif %}
             >
             {% if events %}

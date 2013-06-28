@@ -25,15 +25,23 @@ def announcement_details(request,a_id):
     return render_to_response('events/announcement_details.html',RequestContext(request, c))
     
 def month(request,year,month):
+    import datetime
+    date = datetime.date.today()
+
     year,month = int(year),int(month)
     event_list = event.objects.filter(start_date__year=year,start_date__month=month).order_by('-start_date')
-    c = {'event_list':event_list,'year':year,'month':month}
+    announcement_list = announcement.objects.all().filter(expire_date__gt=date).order_by('-entry_date')
+    c = {'event_list':event_list,'announcement_list': announcement_list,'year':year,'month':month}
     return render_to_response('events/event_calendar.html',RequestContext(request, c))
 
 def day(request,year,month,day):
+    import datetime
+    date = datetime.date.today()
+
     year,month,day = int(year),int(month),int(day)
     event_list = event.objects.filter(start_date__year=year,start_date__month=month,start_date__day=day).order_by('-start_date')
-    c = {'event_list':event_list,'year':year,'month':month,'day':day}
+    announcement_list = announcement.objects.all().filter(expire_date__gt=date).order_by('-entry_date')
+    c = {'event_list':event_list,'announcement_list':announcement_list,'year':year,'month':month,'day':day}
     return render_to_response('events/event_calendar.html',RequestContext(request, c))
 
 @login_required
