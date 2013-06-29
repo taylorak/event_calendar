@@ -11,11 +11,14 @@
     <body>
         <div id="inner-page">
             {% block header %}
-            <div id="header">
-                <div class="padding">
-                    <h1 class="highlight">Events and Announcements</h1>
+
+            <a id="head_home" href="{% url "events.views.index" %}">
+                <div id="header">
+                    <div class="padding">
+                        <h1 class="highlight">Events and Announcements</h1>
+                    </div>	
                 </div>	
-            </div>	
+            </a>
             {% endblock %}
 
             {% block body %}{% endblock %}

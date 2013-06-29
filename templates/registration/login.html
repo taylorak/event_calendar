@@ -5,7 +5,7 @@
 {% if form.errors %}
 <p>Your username and password didn't match. Please try again.</p>
 {% endif %}
-
+<div class="padding">
 <form method="post" action="{% url "django.contrib.auth.views.login" %}">
 {% csrf_token %}
 <table>
@@ -20,7 +20,8 @@
 </table>
 
 <input type="submit" value="login" />
-<input type="hidden" name="next" value="{% url "events.views.profile" %}" />
+<input type="hidden" name="next" value="{% url "events.views.index" %}" />
 </form>
+</div>
 
 {% endblock %}

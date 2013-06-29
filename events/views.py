@@ -9,19 +9,37 @@ from django.template import RequestContext
 def index(request):
     import datetime
     date = datetime.date.today()
+
+    event_list = event.objects.filter(start_date__year=date.year,start_date__month=date.month).order_by('-start_date')
+    announcement_list = announcement.objects.all().filter(expire_date__gt=date).order_by('-entry_date')
+    c = {'event_list':event_list,'announcement_list': announcement_list,'year':date.year,'month':date.month}
+    return render_to_response('events/event_calendar.html',RequestContext(request, c))
+
+"""
+    import datetime
+    date = datetime.date.today()
     event_list = event.objects.all().filter(start_date__gt=date).order_by('-start_date')[:5]
     announcement_list = announcement.objects.all().filter(expire_date__gt=date).order_by('-entry_date')
     c = {'event_list':event_list,'announcement_list':announcement_list,'year':date.year,'month':date.month,'day':date.day}
     return render_to_response('index.html', RequestContext(request, c))
+"""
 
 def event_details(request,e_id):
+    import datetime
+    date = datetime.date.today()
+
     event_details = get_object_or_404(event,id=e_id)
-    c = {'event': event_details,'year':event_details.start_date.year,'month':event_details.start_date.month}
+    announcement_list = announcement.objects.all().filter(expire_date__gt=date).order_by('-entry_date')
+    c = {'event': event_details,'announcement_list':announcement_list,'year':event_details.start_date.year,'month':event_details.start_date.month}
     return render_to_response('events/event_details.html',RequestContext(request, c))
 
 def announcement_details(request,a_id):
+    import datetime
+    date = datetime.date.today()
+
     announcement_details = get_object_or_404(announcement,id=a_id)
-    c = {'announcement': announcement_details,'year':announcement_details.entry_date.year,'month':announcement_details.entry_date.month}
+    announcement_list = announcement.objects.all().filter(expire_date__gt=date).order_by('-entry_date')
+    c = {'announcement': announcement_details,'announcement_list':announcement_list,'year':date.year,'month':date.month}
     return render_to_response('events/announcement_details.html',RequestContext(request, c))
     
 def month(request,year,month):
@@ -52,7 +70,7 @@ def add_event(request):
             instance = form.save(commit=False)
             instance.author = request.user
             instance.save()
-            return HttpResponseRedirect('/calendar/profile')
+            return HttpResponseRedirect('/calendar/')
     else:
         form = event_Form()
     c = {'message': 'Add Event','form': form}
@@ -66,7 +84,7 @@ def add_announcement(request):
             instance = form.save(commit=False)
             instance.author = request.user
             instance.save()
-            return HttpResponseRedirect('/calendar/profile')
+            return HttpResponseRedirect('/calendar/')
     else:   
         form = announcement_Form()
     c = {'message': 'Add Announcement', 'form': form}

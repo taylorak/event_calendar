@@ -41,8 +41,8 @@ class event(models.Model):
         return str(self.start_date)
 
 class event_Form(ModelForm):
-    start_date = forms.DateTimeField(label = "Start Date/Time", widget = SplitSelectDateTimeWidget, required=True, help_text ="24-hour clock (00:00 - 23:59)")
-    end_date = forms.DateTimeField(label = "End Date/Time", widget = SplitSelectDateTimeWidget, required=True, help_text ="24-hour clock (00:00 - 23:59)")
+    start_date = forms.DateTimeField(label = "Start Date/Time", widget = SplitSelectDateTimeWidget(twelve_hr=True,hour_step=1,minute_step=5,second_step=10),initial=datetime.datetime.now(),required=True, help_text ="24-hour clock (00:00 - 23:59)")
+    end_date = forms.DateTimeField(label = "End Date/Time", widget = SplitSelectDateTimeWidget(twelve_hr=True,hour_step=1,minute_step=5,second_step=10),initial=datetime.datetime.now(),required=True, help_text ="24-hour clock (00:00 - 23:59)")
 
     class Meta:
         model = event

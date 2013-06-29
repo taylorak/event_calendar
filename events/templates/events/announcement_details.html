@@ -1,26 +1,17 @@
-{% extends "base.html" %}
+{% extends "calendar_base.html" %}
 {% load custom_filters %}
 
-
-{% block head %}<title>Announcement Details</title>{% endblock %}
+{% block head %}
+<title>Announcement Details</title>
+<link href="{{STATIC_URL}}css/events.css" rel="stylesheet" type="text/css" title="style.css">
+{% endblock %}
 
 {% block body %}
 
-
-<a href="{% url "events.views.index" %}">Home</a>
-
-{% if user.is_authenticated %}
-<a href="{% url "django.contrib.auth.views.logout" %}">Logout</a>
-{% else %}
-<a href="{% url "django.contrib.auth.views.login" %}">Login</a>
-{% endif %}
-
-<div class="info">
-	<div class="padding">
-    <h4>{{ announcement.title }}</h4>
+<div class="info-column">
+    <h3>{{ announcement.title }}</h3>
+    <b>Posted on</b>: {{ announcement.entry_date|date:"M d, Y" }}
     {{ announcement.description|my_markdown }}
-    {{ announcement.author }}
-   </div>
 </div>
 
 {% endblock %}

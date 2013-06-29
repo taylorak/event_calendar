@@ -20,10 +20,9 @@
   text-decoration: none;
   display: block;
   border-bottom: thin solid #000000;
-  width: 100%;
+  width: 90%;
 }
 #content {
-  width: 100%;
   overflow: hidden;
 }
 #content ul {
@@ -42,18 +41,40 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
-#content .middle-column table {
+#content .middle-column .table {
   width: 100%;
 }
-#content .middle-column table .date {
+#content .middle-column .table .date {
   font-weight: bold;
-  padding-top: 10px;
   background-color: #79c2db;
+  width: 100%;
+  overflow: hidden;
+  padding: 2px;
+  margin-top: 5px;
 }
-#content .middle-column table .time {
+#content .middle-column .table .details {
+  font-size: 10pt;
+  width: 100%;
+  margin-top: 5px;
+  overflow: hidden;
+}
+#content .middle-column .table .details .time {
+  float: left;
   width: 20%;
   text-align: left;
   vertical-align: top;
+}
+#content .middle-column .table .details .description {
+  float: right;
+  width: 80%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+#content .info-column {
+  word-wrap: break-word;
+  width: 50%;
+  float: left;
 }
 #content .right-column {
   width: 30%;
@@ -61,4 +82,11 @@
 }
 #content .right-column .padding {
   margin: 10px;
+}
+#content .right-column .padding li {
+  display: block;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }

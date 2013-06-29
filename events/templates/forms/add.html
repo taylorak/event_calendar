@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %} Add Form {% endblock %}
+{% block head %}
+<title>Add Form</title>
+<link href="{{STATIC_URL}}css/forms.css" rel="stylesheet" type="text/css" title="style.css">
+{% endblock %}
 
 {% block body %}
-
+<div class="padding">
 <div id="add_form">
 
     <h3>{{ Message }}</h3>
@@ -15,17 +18,20 @@
             <tr>
                 <th>{{ field.label_tag }}:</th><td>{{ field }}</td></td>
             {% if field.errors %}
-                <td>{{ field.errors }}</td>
+                <td class="errors">{{ field.errors }}</td>
             {% endif %}
             </tr>
             {% endfor %}
+            <tr>
+												<td></td>
+												<td><br/><input type="submit" name="submit" value="Add" /></td>            
+            </tr>
         </table>
 
         {% csrf_token %}
 
-        <input type="submit" name="submit" value="Add" />
-
     </form>
 
+</div>
 </div>
 {% endblock %}
