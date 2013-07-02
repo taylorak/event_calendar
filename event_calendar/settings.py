@@ -8,7 +8,7 @@ PROJECT_ROOT = os.path.join(os.path.abspath(os.path.dirname(__file__)),'..')
 AWS_STORAGE_BUCKET_NAME = 'himb-calendar/'
 
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.s3BotoStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
