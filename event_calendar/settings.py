@@ -3,7 +3,12 @@
 import os;
 PROJECT_ROOT = os.path.join(os.path.abspath(os.path.dirname(__file__)),'..')
 
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'himb-calendar/'
+
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.s3BotoStorage'
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
@@ -69,7 +74,7 @@ MEDIA_URL = ''
 STATIC_ROOT = ''
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
-STATIC_URL = 'https://s3.amazonaws.com/himb-calendar/'#'/static/'
+STATIC_URL = 'https://' + AWS_STORAGE_BUCKET_NAME + 's3.amazonaws.com/'#'/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
