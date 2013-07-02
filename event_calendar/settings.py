@@ -3,14 +3,14 @@
 import os;
 PROJECT_ROOT = os.path.join(os.path.abspath(os.path.dirname(__file__)),'..')
 
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+#AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+#AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'himb-calendar/'
 
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.s3BotoStorage'
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -74,7 +74,8 @@ MEDIA_URL = ''
 STATIC_ROOT = ''
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
-STATIC_URL = 'https://' + AWS_STORAGE_BUCKET_NAME + 's3.amazonaws.com/'#'/static/'
+STATIC_URL = 'https://' + AWS_STORAGE_BUCKET_NAME + 's3.amazonaws.com/'
+#STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -170,8 +171,8 @@ LOGGING = {
 
 
 # Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+#import dj_database_url
+#DATABASES['default'] =  dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

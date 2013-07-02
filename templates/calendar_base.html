@@ -72,9 +72,12 @@
                             <a href="{% url "events.views.announcement_details" announcement.id %}">{{ announcement.title }}</a></li>
                             {% endfor %}
                         </ul>
-                                <h4>FEEDS</h4>
-          						<a href="/feeds/announcements/" rel="alternate" type="application/rss+xml"><img alt="" style="vertical-align:middle;border:0" src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png"/></a>
+                            <ul>
+                                <h3 class="highlight">FEEDS</h3>
+                                <li><a href="/feeds/announcements/" rel="alternate" type="application/rss+xml"><img alt="" style="vertical-align:middle;border:0" src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png"/></a>
         						<a href="/feeds/announcements/">Subscribe to Atom feed</a><br>
+                                </li>
+                            </ul>
                     </div>
                 </div>
 
