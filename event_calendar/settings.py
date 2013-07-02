@@ -3,7 +3,9 @@
 import os;
 PROJECT_ROOT = os.path.join(os.path.abspath(os.path.dirname(__file__)),'..')
 
-DEBUG = True
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
