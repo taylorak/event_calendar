@@ -5,6 +5,8 @@ from django.forms import ModelForm
 from django.contrib.auth.models import User
 import datetime
 from widgets import SplitSelectDateTimeWidget
+from django.core.urlresolvers import reverse
+
 
 # Create your models here.
 
@@ -17,14 +19,24 @@ class announcement(models.Model):
     
     def __unicode__(self):
         return str(self.entry_date)
+    
+    def get_absolute_url(self):
+        return reverse('events.views.announcement_details', args=[str(self.id)])
 
 
 class announcement_Form(ModelForm):
     #expire_date = forms.DateField(widget = SelectDateWidget, required=True)
     expire_date = forms.DateField(widget=SelectDateWidget, initial=datetime.date.today(), required=True)
+
     class Meta:
         model = announcement
         exclude = ('author','entry_date')
+
+    def __init__(self, *args, **kwargs):
+        super(announcement_Form, self).__init__(*args, **kwargs) # Call to ModelForm constructor
+        self.fields['description'].widget.attrs['cols'] = 60
+        self.fields['description'].widget.attrs['rows'] = 15
+
 
 ####
 
@@ -47,5 +59,10 @@ class event_Form(ModelForm):
     class Meta:
         model = event
         exclude = ('author')
+
+    def __init__(self, *args, **kwargs):
+        super(event_Form, self).__init__(*args, **kwargs) # Call to ModelForm constructor
+        self.fields['description'].widget.attrs['cols'] = 60
+        self.fields['description'].widget.attrs['rows'] = 15
 
 ####

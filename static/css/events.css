@@ -14,6 +14,7 @@
 }
 #navbar {
   width: 100%;
+  overflow: hidden;
   list-style-type: none;
 }
 #navbar a {
@@ -21,6 +22,13 @@
   display: block;
   border-bottom: thin solid #000000;
   width: 90%;
+}
+#navbar #images {
+  width: 100%;
+}
+#navbar #images img {
+  width: 100%;
+  height: 100%;
 }
 #content {
   overflow: hidden;
@@ -80,13 +88,27 @@
   width: 30%;
   float: right;
 }
+#content .right-column h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 #content .right-column .padding {
   margin: 10px;
 }
+#content .right-column .padding h3 {
+  margin: 0;
+}
+#content .right-column .padding ul {
+  padding: 5px;
+}
 #content .right-column .padding li {
+  margin-top: 5px;
   display: block;
   width: 100%;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+#content .right-column .padding li a {
+  font-size: 10pt;
 }

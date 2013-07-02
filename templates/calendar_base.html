@@ -1,6 +1,5 @@
 {% load inclusion_tags %}
-<!DOCTYPE html>
-
+<!DOCTYPE html> 
 <html>
 
     <head>
@@ -13,28 +12,40 @@
         <div id="inner-page">
             {% block header %}
 
-            <a id="head_home" href="{% url "events.views.index" %}">
+         
                 <div id="header">
                     <div class="padding">
-                        <h1 class="highlight">Events and Announcements</h1>
+                    	<a id="head_home" href="{% url "events.views.index" %}">
+                            <!--	<img src="{{STATIC_URL}}images/Stark.jpg" alt="Stark"/> -->
+                       <h1 class="highlight">Events and Announcements</h1>
+                        </a>
                     </div>	
                 </div>	
-            </a>
+           
+
             {% endblock %}
             <div id="content">
                 <div class="left-column">
 
                     <div id="navbar">
                         <div class="padding">
-                            <a href="{% url "events.views.index" %}">Home</a>
+                        				<ul>
+                            <li><a href="{% url "events.views.index" %}">Home</a></li>
 
                             {% if user.is_authenticated %}
                             <li><a href="{% url "events.views.add_event" %}">Add Event</a></li>
                             <li><a href="{% url "events.views.add_announcement" %}">Add Announcement</a></li>
-                            <a href="{% url "django.contrib.auth.views.logout" %}">Logout</a>                
+                            <li><a href="{% url "django.contrib.auth.views.logout" %}">Logout</a></li>             
                             {% else %}
-                            <a href="{% url "django.contrib.auth.views.login" %}">Login</a>
+                            <li><a href="{% url "django.contrib.auth.views.login" %}">Login</a></li>
                             {% endif %}
+                            </ul>
+                          <!--  <div id="images">
+                            			<img src="{{STATIC_URL}}images/Stark.jpg" alt="Stark"/>
+                            			<img src="{{STATIC_URL}}images/Thor.jpg" alt="Thor"/>
+                            			<img src="{{STATIC_URL}}images/Hulk.jpg" alt="Hulk"/>
+                            			<img src="{{STATIC_URL}}images/Capt_America.jpg" alt="Cap"/>
+                                    </div> -->
                         </div>
                     </div>			
                 </div>
@@ -48,8 +59,9 @@
                     <div class="padding">
                         {% calendar_html year month %}
 
-                        <h3 class="highlight">Announcements</h3>
-                        <ul>        
+                    
+                        <ul>     
+                        	<li><h3 class="highlight">Announcements</h3></li>
                             {% if not announcement_list%}
                             <li>No Announcements</li>
                             {% endif %}
@@ -60,6 +72,9 @@
                             <a href="{% url "events.views.announcement_details" announcement.id %}">{{ announcement.title }}</a></li>
                             {% endfor %}
                         </ul>
+                                <h4>FEEDS</h4>
+          						<a href="/feeds/announcements/" rel="alternate" type="application/rss+xml"><img alt="" style="vertical-align:middle;border:0" src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png"/></a>
+        						<a href="/feeds/announcements/">Subscribe to Atom feed</a><br>
                     </div>
                 </div>
 
