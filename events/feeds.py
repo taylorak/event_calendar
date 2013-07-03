@@ -13,8 +13,8 @@ class LatestAnnouncement(Feed):
     description = "The latest announcements."
 #    feed_type = Atom1Feed
     
-    title_template = "feeds/announcements_title"
-    description_template = "feeds/announcements_description"
+#    title_template = "feeds/announcements_title"
+    description_template = "feeds/announcements_description.html"
     
     def items(self):
  #       import datetime
@@ -29,6 +29,6 @@ class LatestAnnouncement(Feed):
     def item_link(self, item):
         return item.get_absolute_url()
 
-    def item_description(self, item):
-        return item.description
+#    def item_description(self, item):
+#        return item.description
     
