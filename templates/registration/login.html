@@ -1,14 +1,47 @@
-{% extends "base.html" %}
+{% extends "index_base.html" %}
 
-{% block body %}
+{% block menu %}
+<style type="text/css">
+    #menu {
+    position:absolute;
+	top:0px;
+	left:15px;
+	width:125px;
+	padding:10px 0px 0px 0px;
+	margin:0px 0px 0px 0px;
+	background-color:#fff;
+	border-bottom:0px solid #039;
+	
+/* Again, the ugly brilliant hack. */
+	voice-family: "\"}\"";
+	voice-family:inherit;
+	width:125px;
+    }
 
+#Content {
+	top:0px;
+	left:0px;
+    width: 270px;
+	height:auto;
+	margin: 0 auto;/*0px 50px 0px 170px;*/
+	padding:170px 0px 20px 0px;
+	}
+
+</style>
+
+<div id="menu" border="0">
+    <a href="{% url "events.views.index" %}"><img src="{{ STATIC_URL }}/images/himb_logo_bluegreen1.gif" alt="HIMB logo." width="125" height="125" border="0" /></a>
+</div>           
+{% endblock %}
+
+{% block Content %}
 {% if form.errors %}
 <p>Your username and password didn't match. Please try again.</p>
 {% endif %}
-<div class="padding">
+<div id="Content">
 <form method="post" action="{% url "django.contrib.auth.views.login" %}">
 {% csrf_token %}
-<table>
+<table text-align="center">
 <tr>
     <td>{{ form.username.label_tag }}</td>
     <td>{{ form.username }}</td>
@@ -25,3 +58,5 @@
 </div>
 
 {% endblock %}
+
+{% block footer %} {% endblock %}
