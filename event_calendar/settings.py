@@ -10,11 +10,11 @@ PROJECT_ROOT = os.path.join(os.path.abspath(os.path.dirname(__file__)),'..')
 #STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 #DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+   #  ('Your Name', 'your_email@example.com'),
 )
 
 MANAGERS = ADMINS
@@ -136,7 +136,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'storages',
     'events',
 )
 
