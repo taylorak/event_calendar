@@ -1,13 +1,14 @@
 <style type="text/css">
-    #calendar { font-size: 13px; }
-    #calendar td,th { padding: 4px; width: 25px; height: 20px; background: #66BBDD; }
-    #calendar td { text-align:  center; }
+    #calendar { font-size: 12px; }
+    #calendar td,th { width: 23px; height: 14px; text-align: center; background: #66BBDD; }
+    #calendar #calhead { border-bottom: 1px dotted #66CC99; }
     #calendar .date { background: #3399BB; }
-    #calendar #current { color: #FFFFFF }
+    #calendar #current { color: #FFFFFF; }
+
 </style>
 
 <table id="calendar">
-    <tr>
+    <tr id="calhead">
         <th><a href="{% url "events.views.month" prev_year prev_month %}">&lt;&lt</a></th>
         <th colspan="5">{{ month_name }} {{ year }}</th>
         <th><a href="{% url "events.views.month" next_year next_month %}">&gt;&gt</a></th>
@@ -19,7 +20,7 @@
     </tr>
     {% for week in weeks %}
     <tr>
-        {% for day,events,current in week %}
+        {% for day,events,announcements,current in week %}
         <td 
             {% if current %}
             id="current" 

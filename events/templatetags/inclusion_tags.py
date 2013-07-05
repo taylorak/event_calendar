@@ -1,5 +1,6 @@
 from django import template
-from events.models import event
+from events.models import event,announcement
+from django.utils.timezone import utc
 
 register = template.Library()
 
@@ -7,8 +8,10 @@ register = template.Library()
 def calendar_html(year,month):
     import calendar
     import datetime
+
     date = datetime.date.today()
     year,month = int(year),int(month)
+    calendar.setfirstweekday(6)
     chosen_month = calendar.monthcalendar(year, month)
 #    weeks = [[day or '' for day in week] for week in chosen_month]
 
@@ -17,13 +20,15 @@ def calendar_html(year,month):
 
     for week in chosen_month:
         for day in week:
-            events = current = False
+            events = announcements = current = False
             if day:
+#                check = datetime.date(year,month,day)
+#                events = event.objects.filter(start_date==check)
                 events = event.objects.filter(start_date__year=year, start_date__month=month, start_date__day=day)
-#                announcements = announcement.objects.filter(entry_date__year=year, entry_date__month=month, entry_date__day=day)
+                announcements = announcement.objects.filter(expire_date__gt=datetime.date(year,month,day))
                 if year == date.year and month == date.month and day == date.day:
                     current = True
-            weeks[i].append((day,events,current))
+            weeks[i].append((day,events,announcements,current))
         weeks.append([])
         i += 1
 
@@ -45,7 +50,7 @@ def calendar_html(year,month):
             'month': month,
             'year': year,
             'weeks': weeks,
-            'daynames': calendar.day_abbr,
+            'daynames': calendar.weekheader(1).split(),#calendar.day_abbr,
             'next_month': next_month,
             'next_year': next_year,
             'prev_month': prev_month,

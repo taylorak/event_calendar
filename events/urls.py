@@ -14,14 +14,14 @@ from events.feeds import LatestAnnouncement
 #}
 
 urlpatterns = patterns('',
-    url(r'^$', 'events.views.index'),
+    url(r'^$', 'events.views.event_calendar'),
     url(r'^events/(?P<e_id>\d+)/$','events.views.event_details'),
     url(r'^announcements/(?P<a_id>\d+)/$','events.views.announcement_details'),
     url(r'^(?P<year>\d{4})/(?P<month>\d+)/$','events.views.month'),
     url(r'^(?P<year>\d{4})/(?P<month>\d+)/(?P<day>\d+)/$','events.views.day'),
     url(r'^add_event/$','events.views.add_event'),
     url(r'^add_announcement/$','events.views.add_announcement'),
-    url(r'^feeds/announcements/$',LatestAnnouncement()),
+#    url(r'^feeds/announcements/$',LatestAnnouncement()),
 #    url(r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed',
 #    {'feed_dict': feeds}),
 #    url(r'^profile/$','events.views.profile'),

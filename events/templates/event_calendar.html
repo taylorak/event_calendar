@@ -1,0 +1,150 @@
+{% extends "index_base.html" %}
+{% load custom_filters %}
+{% load inclusion_tags %} {% block head %} <title>HIMB | Event Calendar</title> <style type="text/css">
+    <!--
+    .style1 {
+        color: #039;
+        font-weight: bold;
+    }
+    -->
+</style>
+<script type="text/javascript">
+    
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-28431266-1']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+     })();
+
+</script>
+{% endblock %}
+
+<!-- Begin Menu -->
+
+{% block menu %}
+<div id="Menu">
+    
+    <a href="{% url "events.views.index" %}"><img src="{{ STATIC_URL }}/images/himb_logo_bluegreen1.gif" alt="HIMB logo." width="125" height="125" border="0" /></a>
+    <ul><li class="youarehere" title="Return to the HIMB Home Page."><a href="{% url "events.views.index" %}">Home</a></li>
+        <li title="Information about HIMB"><a href="about.html">About</a></li>
+        <li title="Faculty, their research projects, and their publications."><a href="faculty.html">Faculty</a> </li>
+        <li title="Research projects at HIMB."><a href="research.html">Research</a> </li>
+        <li title="Educational programs at HIMB."><a href="education.html">Education</a></li>
+        <li title="Some of the research and support facilities at HIMB."><a href="facilities.html">Facilities</a></li>
+        <li title="Calendar of Events"><a href="{% url "events.views.event_calendar" %}">Event Calendar</a></li>
+        {% if user.is_authenticated %}
+        <ul><li title="Add Event"><a href="{% url "events.views.add_event" %}">Add Event</a></li>
+            <li title="Add Announcement"><a href="{% url "events.views.add_announcement" %}">Add Announcement</a></li>
+        </ul>
+        {% endif %}
+        <li title="Information for visiting researchers and students."><a href="visitor.html">Visitor Information</a></li>
+        <li title="Contact HIMB"><a href="about.html#contact">Contact Us</a></li>
+    </ul>
+    <ul><li title="School of Ocean and Earth Science and Technology Home Page."><a href="http://www.soest.hawaii.edu">SOEST</a></li>
+        <li title="University of Hawaii at Manoa Home Page."><a href="http://manoa.hawaii.edu/">UH Manoa</a></li>
+    </ul>
+    
+    <img src="{{ STATIC_URL }}images/photo6fluoresce-menu.jpg" alt="Fluorescence in coral." title="Fluorescence in coral." width="125" height="100" />
+    <div style="font-size:9px;">
+        {% if user.is_authenticated %}
+        [<a href="{% url "django.contrib.auth.views.logout" %}" title="Member Login">Logout</a>]
+        {% else %}                           
+        [<a href="{% url "django.contrib.auth.views.login" %}" title="Member Login">Member Login</a>]
+        {% endif %}
+        
+    </div>
+    <p>&nbsp;</p>
+    
+</div>
+
+{% endblock %}
+<!-- End Menu -->
+
+
+<!-- Begin Content -->
+{% block Content %}
+<div id="Content">
+
+
+    <table align="right" width="621" height="556"> 
+        <tbody>
+            <tr>
+                <td>
+                <h1>Event Calendar</h1>
+                    {% if not event_list %}
+                    <h2>No events have been scheduled for 
+                        {% if day %}
+                        today
+                        {% else %}
+                        {{ month|month_name }}.
+                        {% endif %}
+                    </h2>
+                    {% endif %}
+                    {% for event in event_list %}
+                    {% ifchanged event.start_date.day %}
+                    <h2>{{event.start_date|date:"D, F jS"}}</h2>
+                    {% endifchanged %}
+
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td align="left" valign="top" width="50">{{event.start_date|date:"h:i A" }}</td>
+                                    <td>
+                                        <a href="{% url "events.views.event_details" event.id %}">{{ event.title }}</a>
+                                        <br />
+                                        {{ event.location }}
+                                    </td>
+                            </tr>
+                        
+                        </tbody>
+                    </table>
+                        {% endfor %}
+
+                    </td>
+                    <td  width="175">
+                        <table align="right" height="40" width="150">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        {% calendar_html year month %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <h4>Add an Event</h4>
+                                    <p>If you have an account <a href="{% url "django.contrib.auth.views.login" %}">log in</a> and click add event from the drop down menu on the left.</p>
+                                    </td>
+                                </tr>
+                            <!--    <tr>
+                                    <td>
+                                        <h2>Announcements</h2>
+                                        <ul>
+                                        {% if announcement_list %}
+                                            {% for announcment in announcement_list %}
+                                                <li margin="0">
+                                                Posted on {{ announcement.entry_date |date:"F jS" }}
+                                                {{ announcement.title }}</li>
+                                                {% endfor %}
+                                        {% else %}
+                                            <li>No announcements</li>
+                                        {% endif %}
+                                        </ul>
+                                    </td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+        <p>[<a href="#top">Top of page</a>]</p>
+
+    </div>
+    {% endblock %}
+
+    <!-- End Content -->

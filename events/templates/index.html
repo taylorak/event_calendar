@@ -1,0 +1,86 @@
+{% extends "index_base.html" %}
+{% load custom_filters %}
+
+<!-- Begin Content -->
+{% block Content %}
+<div id="Content">
+<p class="quote"><a href="{{ STATIC_URL}}images/mmrp1.jpg"></a></p>
+<p class="quote"><img src="{{ STATIC_URL }}images/mmrp1.jpg" alt="Aerial view of Coconut Island in Kaneohe Bay." width="620" height="360" border="0" title="Aerial view of Coconut Island in Kaneohe Bay."/></p>
+<p class="quote">&nbsp;</p><h2 class="no_margin-top">Aloha, Welcome to the Hawai'i Institute of Marine Biology
+    </h2>
+<table width="621" height="142" border="0">
+      <tr>
+        <td width="450"><p class="quote">The Hawai&lsquo;i Institute of Marine Biology is a world-renowned marine research institute of the <a href="http://www.soest.hawaii.edu/" target="_blank">School of Ocean &amp; Earth Science &amp; Technology</a> at the <a href="http://manoa.hawaii.edu/" target="_blank">University of Hawai'i at Manoa</a>. Situated  on Moku o Lo'e (Coconut Island) in Kane&lsquo;ohe Bay, HIMB provides excellent opportunities for tropical marine research located just 15 miles from the main campus and downtown Honolulu.</p>
+          <p>HIMB offers cutting edge <a href="facilities.html">research facilities </a>for faculty, students, and visiting scientists coupled with convenient access to a diverse range of  marine environments. For example, Coconut Island is surrounded by 64 acres of coral reef designated by the state of Hawai&lsquo;i for research activities only as the <a href="http://hawaii.gov/dlnr/dar/regulated_areas_oahu.html" target="_blank">Hawai&lsquo;i Marine Laboratory Refuge</a>. Research at HIMB covers many disciplines of tropical marine science such as coral ecology, biogeochemistry, and evolutionary genetics. In addition, HIMB faculty are recognized authorities in marine diseases, neuroendocrinology, microbial organisms, and sensory systems of marine mammals and elasmobranchs. Visit our <a href="faculty.html">Faculty</a> and <a href="research.html">Research</a> pages to learn more about ongoing scientific activities at HIMB. </p>
+          <p>Graduate and undergraduate students conducting research on Coconut Island are most often
+            enrolled in the departments of <a href="http://www.hawaii.edu/zoology/" target="_blank">Zoology</a> and <a href="http://www.soest.hawaii.edu/oceanography" target="_blank">Oceanography</a> at
+            the University of Hawai&rsquo;i, but also include students from a variety of departments and programs across campus such as the departments 
+            of <a href="http://www.hawaii.edu/microbiology/" target="_blank">Microbiology</a>, <a href="http://www.geography.hawaii.edu/" target="_blank">Geography</a>, <a href="http://www.ctahr.hawaii.edu/mbbe/" target="_blank">Molecular Biosciences and Bioengineering</a> (MBBE), <a href="http://www.ctahr.hawaii.edu/Site/ProgramANSCI.aspx" target="_blank">Human Nutrition, Food and Animal Sciences</a> (HNFAS), 
+        and the <a href="http://www.soest.hawaii.edu/oceanography/GES/" target="_blank">Global Environmental Sciences</a> program at the department of Oceanography.</p></td>
+        <td width="161"><table width="130" height="428" align="right">
+            <tr>
+              <td><img src="{{ STATIC_URL }}images/coral_close.jpg" alt="Image of mushroom coral (Fungia scutaria) under fluorescent light" width="125" height="125" align="right" title="Mushroom coral (Fungia scutaria) under fluorescent light" /></td>
+            </tr>
+            <tr>
+              <td><img src="{{ STATIC_URL }}images/mm2_small2.jpg" alt="Image of False filler whale (Pseudorca crassidens)" width="125" height="125" align="right" title="False filler whale (Pseudorca crassidens)" /></td>
+            </tr>
+            <tr>
+              <td><img src="{{ STATIC_URL }}images/microbe_small.jpg" alt="Image of phytoplankton" width="125" height="125" align="right" title="Microscopic image of phytoplankton" /></td>
+            </tr>
+        </table></td>
+      </tr>
+      <tr>
+      <td>
+ <!--         <h2 class="no_margin-top"><a href="http://himbnews.blogspot.com/">News at HIMB</a></h2>
+        <iframe width="450" height="400" style="border:none;" src="http://output95.rssinclude.com/output?type=iframe&amp;id=467217&amp;hash=808f46bdba0d134ef225a8e323db48df"></iframe>
+     -->
+ 
+     <h2 class="no_margin-top">Announcements
+         {% if user.is_authenticated %}
+         <small><small><a href="{% url "events.views.add_announcement"%}">[Add Announcement]</a></small></small>
+         {% endif %}
+     </h2>	
+        {% if announcement_list %}
+        <ul>
+      	{% for announcement in announcement_list %} 
+        <li padding="0">Posted {{announcement.entry_date|date:"F jS"}}: </br>
+      	<a href="{% url "events.views.announcement_details" announcement.id %}">{{ announcement.title }}</a> </li>
+      	{% endfor %}
+        </ul>
+        {% else %}
+        <p> No New Announcements</p>
+        {% endif %}
+    
+     <h2 class="no_margin-top">Upcoming Events
+        {% if user.is_authenticated %}
+         <small><small><a href="{% url "events.views.add_event"%}">[Add Event]</a></small></small>
+         {% endif %}
+    </h2>
+        {% if event_list %}
+     	<ul>
+        {% for event in event_list %}  
+      	<li><a href="{% url "events.views.event_details" event.id %}">{{ event.title }}-{{event.start_date|date:"F jS (D)"}}</a> </li>
+      	{% endfor %}
+        </ul>
+        {% else %}
+        <p>No Upcoming Events</p> 
+        {% endif %}
+
+        <p>For more events view the <a href="{% url "events.views.event_calendar" %}">Event Calendar</a></p></td>
+        <td><table width="130" height="447" align="right">
+            <tr>
+              <td><img src="{{ STATIC_URL }}images/shark_small.JPG" alt="Image of tiger shark Galeocerdo cuvier)" width="125" height="125" align="right" title="Tiger Shark (Galeocerdo cuvier)" /></td>
+            </tr>
+            <tr>
+              <td><img src="{{ STATIC_URL }}images/Acropora_growth_anomaly_small.jpg" alt="Image of growth anomalies on a table coral (Acropora cytherea)" width="125" height="125" align="right" title="Growth anomalies on a table coral (Acropora cytherea)" /></td>
+            </tr>
+            <tr>
+              <td height="141"><img src="{{ STATIC_URL }}images/tilapia_brooding_small.jpg" alt="Image of brooding tilapia" width="125" height="125" align="right" title="Tilapia brooding young" /></td>
+            </tr>
+        </table></td>
+      </tr>
+    </table>
+<p>[ <a href="#top">Top of the page</a> ]</p>
+</div>
+{% endblock %}
+<!-- End Content -->

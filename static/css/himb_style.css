@@ -1,0 +1,278 @@
+/* Style Sheet for Hawaii Institute of Marine Biology's pages */
+
+body {
+	height:100%;
+	margin:0px;
+	padding:0px;
+	text-align:center;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#000;
+	background-color:#dee;
+	}
+
+img a {
+	border:0px;
+	}
+	
+#Container {
+	position:relative;
+	width:830px;
+	margin:0px auto 0px auto;
+	padding:0px;
+	border:1px solid #069;
+	background-color:#fff;
+	background-repeat:no-repeat;
+	text-align:left;
+	}
+	
+#Banner {
+	position:absolute;
+	top:0px;
+	left:140px;
+	width:690px;
+	height:125px;
+	padding:0px;
+	margin:0px 0px 0px 0px;
+	background-color:#fff;
+	}
+
+
+#Content {
+	top:0px;
+	left:0px;
+	width:620px;
+	height:auto;
+	margin:0px 50px 0px 170px;
+	padding:140px 0px 20px 0px;
+	}
+		
+h1 {
+	margin:0px 0px 15px 0px;
+	padding:0px;
+	font-size:20px;
+	line-height:28px;
+	font-weight:bold;
+	color:#039;
+	text-align:left;
+	}
+	
+h2 {
+	margin:20px 0px 10px 0px;
+	padding:0px;
+	font-size:17px;
+	line-height:28px;
+	font-weight:bold;
+	color:#039;
+	border-bottom:1px dotted #6c9;
+	text-align:left;
+	}
+
+h3 {
+	margin:20px 0px 5px 0px;
+	padding:0px;
+	font-size:14px;
+	line-height:20px;
+	font-weight:bold;
+	color:#039;
+	text-align:left;
+	}
+h3 a {font-weight:bold;}	
+
+h4 {
+	margin:18px 0px 1px 0px;
+	padding:0px;
+	font-size:13px;
+	line-height:18px;
+	font-weight:bold;
+	color:#039;
+	text-align:left;
+	}
+h4.no-link {font-weight:bold;}
+	
+h5 {
+	margin:18px 0px 12px 0px;
+	padding:0px;
+	font-size:13px;
+	line-height:18px;
+	font-weight:normal;
+	color:#039;
+	text-align:left;
+	}	
+p {
+	font:11px/17px arial, helvetica, sans-serif;
+	margin:0px 0px 16px 0px;
+	padding:0px;
+	text-align:left;
+	}
+#Content>p {margin:0px;}
+#Content>p+p {margin:14px 0px 0px 0px;}
+
+#pubs p {
+	font:11px/17px arial, helvetica, sans-serif;
+	margin:0px 0px 16px 0px;
+	padding:0 0 0 60px;
+	text-indent:-30px;
+	text-align:left;
+	}
+
+.caption {font-size:11px; line-height:14px; font-weight:bold; margin:6px 0px 0px 0px}
+.click-on {font-weight:normal; font-style:italic; font-size:10px; line-height:12px; margin:0px;}
+
+.species {font-family:Georgia, "Times New Roman", Times, serif; font-weight:bold; font-style:italic;}
+.common {font:Arial, Helvetica, sans-serif; font-weight:bold;}
+.hawaiian {font:Arial, Helvetica, sans-serif; font-style:italic;}
+p.species {font-size:12px; margin:0px; }
+p.common {font-size:11px; margin:0px;}
+p.hawaiian {font-size:11px; margin:0px;}
+
+.tight {margin:0px;}	
+p.v-space {padding:0 0 12px 0;}	
+
+.quote {
+	font:13px/20px arial, helvetica, sans-serif;
+	margin:0px 0px 22px 0px;
+	padding:0px;
+	text-align:left;
+	}
+
+td {
+	font:11px/16px arial, helvetica, sans-serif;
+	text-align:left;
+	vertical-align:top;
+	} 
+.green_line_above {border-top:1px solid #6c9;}
+
+#gray_top_border td {border-top:1px solid #ccc;}
+#gray_top_border .gray_top_2px {border-top:2px solid #aaa;}
+td.gray_top_2px {border-top:2px solid #aaa;}
+
+ul {
+	list-style:none;
+	margin:9px 0px 20px 0px;
+	padding:0px;
+	}
+	
+ul li {
+	font:11px/15px arial, helvetica, sans-serif;
+	font-style:normal;
+	margin:10px 0px 0px 0px;
+	padding:0px 0px 0px 0px;
+	}
+	
+.disc {list-style:disc;}
+li.tight {margin:2px 0px 0px 0px;}
+	
+
+ol {margin:9px 0px 20px 30px;
+	padding:0px;
+	}
+	
+ol li {
+	font:11px/15px arial, helvetica, sans-serif;
+	font-style:normal;
+	margin:10px 0px 0px 0px;
+	padding:0px 0px 0px 0px;
+	}
+	
+ul ol {
+	margin:0px 0px 10px 20px;
+	padding:0px;
+	}
+ul ul li {line-height:15px;margin:0px;}
+
+a {	color:#039;
+	text-decoration:none;
+	font-weight:bold;
+	font-family:arial, helvetica, sans-serif;
+	}
+a:link {color:#039;}
+a:visited {color:#039;}
+a:hover {color:#6c9; text-decoration:underline;}
+a:active {color:#6c9;}
+
+.no_margin-top {margin-top:0px;}
+
+/* START Menu */
+#Menu {
+	position:absolute;
+	top:0px;
+	left:15px;
+	width:125px;
+	padding:10px 0px 0px 0px;
+	margin:0px 0px 0px 0px;
+	background-color:#fff;
+	border-bottom:12px solid #039;
+	
+/* Again, the ugly brilliant hack. */
+	voice-family: "\"}\"";
+	voice-family:inherit;
+	width:125px;
+	}
+/* Again, "be nice to Opera 5". */
+body>#Menu {width:125px;}
+
+
+#Menu a:link {color:#039;}
+#Menu a:visited {color:#039;}
+#Menu a:hover {color:#6c9; text-decoration:underline; font-style:italic;}
+#Menu a:active {color:#6c9;}
+
+#Menu ul {
+	margin:30px 0px 0px 0px;
+	padding:0 0 10px 0;
+	}
+
+#Menu ul li {
+	text-align:left;
+	font-size:12px;
+	font-weight:bold;
+	line-height:16px;
+	list-style:none;
+	margin:0px 0px 10px 0px;
+	padding:2px 0px 2px 4px;
+	border-bottom:1px dotted #6c9;
+	border-left:1px solid #6c9;
+	}
+
+#Menu li a {font-weight:bold;}
+#Menu .youarehere { font-style:italic;}
+
+#Menu ul ul {
+	margin:0px 0px 0px 12px;
+	padding:0 0 10px 0;
+	}
+
+#Menu ul ul li {
+	text-align:left;
+	font-size:11px;
+	font-weight:normal;
+	line-height:16px;
+	list-style:none;
+	margin:0px 0px 5px 0px;
+	padding:2px 0px 1px 0px;
+	border-bottom:1px dotted #6c9;
+	border-left:0px solid #6c9;
+	}
+
+/* END Menu */
+
+
+/* START Footer */
+#Footer {
+	position:relative;
+	text-align:left;
+	margin:0px 0px 0px 20px;
+	padding:66px 0 30px 0;
+	font-size:8px;
+	width: 755px;
+	height:75px;
+	background-image:url("http://www.soest.hawaii.edu/soest_web/images/soest_pale_bg_ol_crop.gif");
+	background-position:top;
+	background-repeat:no-repeat;
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+
+/* END Footer */
+
+/* Last changed Thursday 02 November 06. */
