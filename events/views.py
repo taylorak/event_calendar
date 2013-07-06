@@ -85,7 +85,7 @@ def add_announcement(request):
             instance = form.save(commit=False)
             instance.author = request.user
             instance.save()
-            return HttpResponseRedirect('/calendar/')
+            return HttpResponseRedirect('/')
     else:   
         form = announcement_Form()
     c = {'message': 'Add Announcement', 'form': form}
