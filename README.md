@@ -1,3 +1,10 @@
-*Django Event Calendar*
+#HIMB Event Calendar#
 
-Calendar for viewing both events and announcements
+Calendar for displaying upcoming events and announcments for the Hawaii Institute
+of Marine Biology.
+
+#Fix#
+
+Convert template tag calendar into javascript calendar
+
+
